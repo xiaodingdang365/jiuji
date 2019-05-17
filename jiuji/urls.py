@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^favicon\.ico$',favicon_view),
     path('index/', views.index),
+    url(r'search/',views.search),
 ]

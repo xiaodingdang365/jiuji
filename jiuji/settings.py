@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'search.apps.SearchConfig',
+    'haystack',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -123,3 +124,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS  = [
     os.path.join(BASE_DIR,'statics'),
 ]
+
+# 配置haystack全文检索框架
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        # 此处为elasticsearch运行的服务器ip地址，端口号默认为9200
+        'URL': 'http://47.105.192.151:9200/',
+        # 指定elasticsearch建立的索引库的名称
+        'INDEX_NAME': 'zhongyi',
+    },
+}
+# 当添加、修改、删除数据时，自动更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
