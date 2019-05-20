@@ -130,7 +130,7 @@ HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         # 此处为elasticsearch运行的服务器ip地址，端口号默认为9200
-        'URL': 'http://47.105.192.151:9200/',
+        'URL': 'http://localhost:9200/',
         # 指定elasticsearch建立的索引库的名称
         'INDEX_NAME': 'zhongyi',
     },
